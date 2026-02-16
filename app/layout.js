@@ -4,8 +4,8 @@ import './ui/globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Lama Dev Next.js Admin Dashboard',
-  description: 'Next.js Tutorial',
+  title: 'Abidemi-mi Admin Dashboard',
+  description: 'This Dashboard is built with Next.js',
 }
 
 export default function RootLayout({ children }) {
