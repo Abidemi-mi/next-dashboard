@@ -1,11 +1,12 @@
 import { connectToDb } from "./utils";
-
 import { User } from "./models";
 
-export const fetchUsers = async () => {
+export const fetchUsers = async (q) => {
+const regex = new RegExp(q, "i")
+
   try {
-     await connectToDb();
-    const users = await User.find();
+    await connectToDb();
+    const users = await User.find({username: {$regex:regex}});
     return users;
   } catch (error) {
     console.log(error);
