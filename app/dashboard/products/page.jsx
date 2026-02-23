@@ -6,6 +6,7 @@ import Image from "next/image";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import { useSearchParams } from "next/navigation";
 import { fetchProducts } from "@/app/lib/data";
+import { deleteProduct } from "@/app/lib/actions";
 
 const ProductSPage = async ({searchParams}) => {
   const q = useSearchParams?.q || "";
@@ -33,7 +34,7 @@ const ProductSPage = async ({searchParams}) => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr key={product.id}>
+            <tr key={product._id}>
               <td>
                 <div className={styles.product}>
                   <Image
@@ -47,7 +48,7 @@ const ProductSPage = async ({searchParams}) => {
                 </div>
               </td>
               <td>{product.desc}</td>
-              <td>{product.price}</td>
+              <td>${product.price}</td>
               <td>{product.createdAt?.toString().slice(0,16)}</td>
               <td>{product.stock}</td>
               <td>
@@ -57,9 +58,12 @@ const ProductSPage = async ({searchParams}) => {
                       View
                     </button>
                   </Link>
+                  <form action={deleteProduct}>
+                    <input type="hidden" name="id" value={product._id} />
                   <button className={`${styles.button} ${styles.delete}`}>
                     Delete
                   </button>
+                  </form>
                 </div>
               </td>
             </tr>
