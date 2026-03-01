@@ -4,12 +4,11 @@ import Search from "@/app/ui/dashboard/search/search";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
-import { useSearchParams } from "next/navigation";
 import { fetchProducts } from "@/app/lib/data";
 import { deleteProduct } from "@/app/lib/actions";
 
 const ProductSPage = async ({searchParams}) => {
-  const q = useSearchParams?.q || "";
+  const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   const { products, count } = await fetchProducts(q, page);
 
